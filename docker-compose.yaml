@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  refinery_couchdb:
+    image: couchdb:latest
+    ports:
+      - 5984:5984
+    environment: 
+      - 'COUCHDB_USER=$REFINERY_USER'
+      - 'COUCHDB_PASSWORD=$REFINERY_PASSWORD' 
+    volumes:
+      - type: bind
+        source: ./config/data
+        target: /opt/couchdb/data
+  # refinery_server:  # TODO: implement as a service after building a Dockerfile for Refinery
