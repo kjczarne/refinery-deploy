@@ -11,4 +11,16 @@ services:
       - type: bind
         source: ./config/data
         target: /opt/couchdb/data
+  refinery:
+    image: refinery:latest
+    ports:
+      - 42069:42069
+    environment: 
+      - 'REFINERY_USER=$REFINERY_USER'
+      - 'REFINERY_PASSWORD=$REFINERY_PASSWORD'
+      - 'REFINERY_SECRET=$REFINERY_SECRET'
+    volumes:
+      - type: bind
+        source: ./refinery_configuration
+        target: /home/node/.npm-global/lib/node_modules/refinery-api/configuration
   # refinery_server:  # TODO: implement as a service after building a Dockerfile for Refinery
